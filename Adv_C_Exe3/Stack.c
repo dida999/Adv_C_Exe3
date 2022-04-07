@@ -9,7 +9,8 @@ void initStack(Stack* s)
 
 void destroyStack(Stack* s)
 {
-	// add your code here
+	int j;
+
 }
 
 void push(Stack* s, char data)
