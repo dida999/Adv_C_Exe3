@@ -9,8 +9,13 @@ void initStack(Stack* s)
 
 void destroyStack(Stack* s)
 {
-	int j;
-
+	Stack* temp;
+	while (s->head)
+	{
+		temp = s->head;
+		s->head = s->head->next;
+		free(temp);
+	}
 }
 
 void push(Stack* s, char data)
@@ -20,7 +25,11 @@ void push(Stack* s, char data)
 
 char pop(Stack* s)
 {
-	// add your code here
+	Stack* temp = s->head;
+	char temp2=s->head->data;
+	s->head = s->head->next;
+	free(temp);
+	return temp2;
 }
 
 
