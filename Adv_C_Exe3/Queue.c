@@ -45,31 +45,34 @@ void enqueue(Queue* q, unsigned int data)
 
 unsigned int dequeue(Queue* q)
 {
-		if (isEmpty(q))
-		{
-			printf("error");
-			return 0;
-		}
 		int temp = q->head->data;
-		Queue* p = q->head;
+		intNode* p = q->head;
 		q->head = q->head->next;
 		if (q->head == NULL) //if queue gets empty
 			q->tail = NULL;//both front and rear NULL
-		q->head->data--; // reduce count–not mandatory
 		free(p);
 		return temp;
 }
 
 int isEmptyQueue(const Queue* q)
 {
-	return (q->head == NULl && q->tail == NULL ? 1 : 0);
+	return (q->head == NULL && q->tail == NULL ? 1 : 0);
 }
 
 /***************** Functions using Queues - Implementation/definition **************************/
 
 void rotateQueue(Queue* q)
 {
-	// add your code here
+	Queue* tmp;
+	initQueue(tmp);
+	while (q->head->next!= NULL)
+	{
+		enqueue(tmp, dequeue(q));
+	}
+	while (tmp->head != NULL)
+	{
+		enqueue(q, dequeue(tmp));
+	}
 }
 
 void cutAndReplace(Queue* q)
@@ -79,5 +82,10 @@ void cutAndReplace(Queue* q)
 
 void sortKidsFirst(Queue* q)
 {
-	// add your code here
+	intNode* tmp = (intNode*)malloc(sizeof(intNode));
+	if (tmp == NULL)
+	{
+		printf("error");
+	}
+	while()
 }

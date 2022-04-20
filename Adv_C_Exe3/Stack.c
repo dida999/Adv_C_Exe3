@@ -148,7 +148,7 @@ void print(charNode* head)
 	charNode* tmp;
 	tmp = head;
 	while (tmp != NULL) {
-		printf(" % d ", tmp->val);
+		printf(" % d ", tmp->data);
 		tmp = tmp->next;
 	}
 }
