@@ -97,3 +97,5 @@ int isPalindrome(Stack* s);
 /// <param name="s"> a non null pointer to a struct Stack</param>
 /// <param name="n"></param>
 void rotateStack(Stack* s, int n);
+void print(charNode* head);
+void display(Stack* S);
