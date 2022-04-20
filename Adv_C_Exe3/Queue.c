@@ -11,7 +11,13 @@ void initQueue(Queue* q)
 
 void destroyQueue(Queue* q)
 {
-	// add your code here
+	Queue* temp;
+	while (q->head != NULL)
+	{
+		temp = q->head;
+		q->head = q->head->next;
+		free(temp);
+	}
 }
 
 void enqueue(Queue* q, unsigned int data)
@@ -39,7 +45,19 @@ void enqueue(Queue* q, unsigned int data)
 
 unsigned int dequeue(Queue* q)
 {
-	// add your code here
+		if (isEmpty(q))
+		{
+			printf("error");
+			return 0;
+		}
+		int temp = q->head->data;
+		Queue* p = q->head;
+		q->head = q->head->next;
+		if (q->head == NULL) //if queue gets empty
+			q->tail = NULL;//both front and rear NULL
+		q->head->data--; // reduce count–not mandatory
+		free(p);
+		return temp;
 }
 
 int isEmptyQueue(const Queue* q)
