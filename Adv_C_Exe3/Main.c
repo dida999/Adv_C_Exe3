@@ -55,6 +55,7 @@ void queue()
 	printQueue(&q1);
 	sortKidsFirst(&q1);
 	printf("after the sort kids first function: \n");
+	printQueue(&q1);
 	dequeue(&q1);
 	dequeue(&q1);
 	printf("after dequeue: \n");

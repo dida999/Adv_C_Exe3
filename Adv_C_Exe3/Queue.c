@@ -117,7 +117,6 @@ void cutAndReplace(Queue* q)
 	}
 	q->head = node;
 	printf("after cut and replace\n");
-
 }
 
 void printQueue(Queue* q)
@@ -132,10 +131,61 @@ void printQueue(Queue* q)
 
 void sortKidsFirst(Queue* q)
 {
-	intNode* tmp = (intNode*)malloc(sizeof(intNode));
-	if (tmp == NULL)
-	{
-		printf("error");
+	int size = 0;
+	intNode* current = q->head;
+	while (current != NULL) {
+		size++;
+		current = current->next;
 	}
-	
+
+	for (int i = 1; i <= size; i++)
+	{
+		int min_index = minIndex(q, size - i, size);
+		insertMinToRear(q, min_index, size);
+	}
+}
+
+// Queue elements after sortedIndex are
+// already sorted. This function returns
+// index of minimum element from front to
+// sortedIndex
+int minIndex(Queue* q, int sortedIndex, int size)
+{
+	int min_index = -1;
+	int min_val = _CRT_INT_MAX;
+
+	for (int i = 0; i < size; i++)
+	{
+		int curr = q->head;
+		dequeue(q);
+
+		// we add the condition i <= sortedIndex
+		// because we don't want to traverse
+		// on the sorted part of the queue,
+		// which is the right part.
+		if (curr <= min_val && i <= sortedIndex)
+		{
+			min_index = i;
+			min_val = curr;
+		}
+		enqueue(q, curr);
+	}
+	return min_index;
+}
+
+// Moves given minimum element to rear of
+// queue
+void insertMinToRear(Queue* q, int min_index, int size)
+{
+	int min_val;
+	for (int i = 0; i < size; i++)
+	{
+		int curr = q->head;
+		dequeue(q);
+		if (i != min_index)
+			enqueue(q, curr);
+		else
+			min_val = curr;
+	}
+	enqueue(q, min_val);
 }
