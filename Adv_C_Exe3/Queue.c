@@ -78,7 +78,60 @@ void rotateQueue(Queue* q)
 
 void cutAndReplace(Queue* q)
 {
-	// add your code here
+	intNode* node, * node1, * node2, * temp;
+	int count, sum = 0, ave;
+	if (isEmptyQueue(q))
+	{
+		return;
+	}
+	// count how many elements we have in our queue
+	for (node = q->head, count = 0; node != NULL; node = node->next, count++)
+	{
+		sum += node->data;
+	}
+	//if the number of elements are even
+	if (count % 2 != 0)
+	{
+		ave = sum / count;
+		node = (intNode*)malloc(sizeof(intNode));
+		node->data = ave;
+		node->next = NULL;
+		q->tail->next = node;
+		q->tail = node;
+		count++;
+	}
+
+	//node2 will point the last element, and node1 will point the center element
+	for (node1 = q->head, node2 = q->head->next; node2->next != NULL; node1 = node1->next, node2 = node2->next->next)
+	{
+	}
+	// we will change node1 to point on the next element from the middle since we wont it to be from the tail side
+	node = node1->next;
+	// 
+	temp = node->next;
+	node->next = q->head;
+	node1->next = NULL;
+	q->tail = node1;
+	while (temp != NULL)
+	{
+		node1 = node;
+		node = temp;
+		temp = temp->next;
+		node->next = node1;
+	}
+	q->head = node;
+	printf("after cut and replace\n");
+
+}
+
+void printQueue(Queue* q)
+{
+	intNode* node;
+	for (node = q->head; node != NULL; node = node->next)
+	{
+		printf("%d ", node->data);
+	}
+	printf("\n");
 }
 
 void sortKidsFirst(Queue* q)

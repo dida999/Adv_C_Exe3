@@ -92,3 +92,4 @@ void sortKidsFirst(Queue* q);
 
 int minIndex(Queue* q, int sortedIndex, int size);
 void insertMinToRear(Queue* q, int min_index, int size);
+void printQueue(Queue* q);
