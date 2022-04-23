@@ -7,7 +7,6 @@ void stack();
 void queue();
 void main()
 {
-	stack();
 	queue();
 }
 
