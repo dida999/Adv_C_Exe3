@@ -87,5 +87,5 @@ void sortKidsFirst(Queue* q)
 	{
 		printf("error");
 	}
-	while()
+	
 }

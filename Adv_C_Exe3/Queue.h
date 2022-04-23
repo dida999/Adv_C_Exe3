@@ -89,3 +89,6 @@ void cutAndReplace(Queue* q);
 /// </summary>
 /// <param name="s"></param>
 void sortKidsFirst(Queue* q);
+
+int minIndex(Queue* q, int sortedIndex, int size);
+void insertMinToRear(Queue* q, int min_index, int size);
