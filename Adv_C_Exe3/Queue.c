@@ -1,5 +1,6 @@
+#include <stdio.h>
 #include "Queue.h"
-#include <cstddef>
+#include <stdlib.h>
 
 /***************** Queue ADT Implementation *****************/
 
@@ -11,7 +12,7 @@ void initQueue(Queue* q)
 
 void destroyQueue(Queue* q)
 {
-	Queue* temp;
+	intNode* temp;
 	while (q->head != NULL)
 	{
 		temp = q->head;
@@ -39,7 +40,7 @@ void enqueue(Queue* q, unsigned int data)
 		{
 			q->tail->next = node;
 		}
-		q->tail = node // updating our tail
+		q->tail = node; // updating our tail
 	}
 }
 
@@ -63,7 +64,7 @@ int isEmptyQueue(const Queue* q)
 
 void rotateQueue(Queue* q)
 {
-	Queue* tmp;
+	Queue* tmp = (Queue*)malloc(sizeof(Queue));
 	initQueue(tmp);
 	while (q->head->next!= NULL)
 	{

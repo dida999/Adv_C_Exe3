@@ -1,5 +1,7 @@
 #include "Stack.h"
-#include <cstddef>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 /***************** Stack ADT Implementation *****************/
 
@@ -10,7 +12,7 @@ void initStack(Stack* s)
 
 void destroyStack(Stack* s)
 {
-	Stack* temp;
+	charNode* temp;
 	while (s->head)
 	{
 		temp = s->head;
@@ -27,14 +29,14 @@ void push(Stack* s, char data)
 		printf("malloc failed");
 		return;
 	}
-	newNode->data = data;
 	newNode->next = s->head;
+	newNode->data = data;
 	s->head = newNode;
 }
 
 char pop(Stack* s)
 {
-	Stack* temp = s->head;
+	charNode* temp = s->head;
 	char temp2=s->head->data;
 	s->head = s->head->next;
 	free(temp);
@@ -51,7 +53,7 @@ int isEmptyStack(const Stack* s)
 
 void flipBetweenHashes(const char* sentence)
 {
-	Stack* temp;
+	Stack* temp= (Stack*)malloc(sizeof(Stack));
 	initStack(temp);
 	for (int i = 0; i < strlen(sentence); i++)
 	{
@@ -119,7 +121,7 @@ void rotateStack(Stack* s, int n)
 	Stack* tmp2 = (Stack*)malloc(sizeof(Stack*));
 	if (tmp1 == NULL || tmp2 == NULL)
 	{
-		print("error");
+		printf("error");
 	}
 	//pushing from original stack to 2 temp stack and arranging again in original stack
 	for (int i = 0; i < count - n; i++)
